@@ -34,30 +34,3 @@ console.log(resultado);
 Ejercicio - Programación Estructural
 
 
-Verificar número par o impar
-Escribe un programa en JavaScript que:
-Pida al usuario un número entero.
-
-
-Determine si el número es par o impar.
-
-
-Muestre el resultado en consola.
-
-
-Solucion:
-
-
-function esPar(numero) {
-   numero = parseInt(numero)
-if (isNaN(numero)) {
-    console.log("Entrada no válida.");
-} else if ( numero % 2 === 0) {
-    console.log("El número es par.");
-} else {
-    console.log("El número es impar.");
-}
-
-}
-
-let numero = esPar(5);
