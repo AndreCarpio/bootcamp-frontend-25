@@ -99,30 +99,39 @@ Es un paradigma de la programación que enfatiza el uso de construcciones de flu
 
 
 # Principios de la Programación Estructurada
+
 Los principios fundamentales de la programación estructurada son reglas de diseño que buscan mejorar la claridad, calidad y mantenibilidad del código. Estos son los pilares esenciales:
 1. **Principio de Secuencia**
+
 Las instrucciones se ejecutan en orden, una después de otra, de arriba hacia abajo.
 
 2. **Principio de Selección (Control de Flujo Condicional)**
+
 Uso de estructuras como if, else, y switch para tomar decisiones.
 
 3. **Principio de Iteración (Bucles)**
+
 Repetición de bloques de código con estructuras como for, while, y do-while.
 
 
 4. **Principio de Modularidad**
+
 Dividir el programa en funciones o módulos pequeños, cada uno con una única responsabilidad.
 
 5. **Principio de "Un Solo Punto de Salida"**
+
 Cada función o bloque debe tener un único punto de salida (evitar múltiples return o break innecesarios).
  
 6. **Principio de No Uso de Saltos Incondicionales (goto)**
+
 Evitar saltos arbitrarios que rompan el flujo lineal del código.
 
 7. **Principio de Legibilidad**
+
 El código debe ser autoexplicativo, con nombres descriptivos y evitando anidaciones profundas.
 
 8. **Principio de Evitar Efectos Secundarios**
+
 Las funciones deben depender solo de sus parámetros y no modificar variables globales.
 
 # Ejemplo - Programación Estructural
@@ -184,8 +193,19 @@ const total = calculateTotalPrice([{ price: 10, discount: true }, { price: 20, d
 console.log("Total: $" + total);
 ``` 
 # Ejercicio  - Programación Estructural
->Crear un programa en JavaScript que convierta la edad humana en "años de mascota" para perros y gatos. Las reglas de conversión son las siguientes:
+Se tiene una lista de animales y se pide crear un programa en JavaScript que convierta la edad humana en "años de mascota" para perros y gatos. Las reglas de conversión son las siguientes:
 Perros: 1 año humano equivale a 7 años de perro.
 Gatos: 1 año humano equivale a 5 años de gato.
-El programa debe recibir la edad humana y el tipo de mascota ("perro" o "gato"), calcular su edad correspondiente y mostrar el resultado por consola.
->
+El programa debe recibir la edad humana y el tipo de mascota ("perro" o "gato"), calcular la edad correspondiente de cada animal de la lista y mostrar el resultado por consola .
+
+```
+let list = [
+  { name: 'Fido', age: 5, type: 'dog' },
+  { name: 'Lulu', age: 10, type: 'cat' },
+  { name: 'Max', age: 3, type: 'dog' },
+  { name: 'Milo', age: 2, type: 'cat' },
+  { name: 'Bella', age: 4, type: 'dog' },
+  { name: 'Nina', age: 7, type: 'rabbit' }
+];
+
+```
