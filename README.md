@@ -204,8 +204,7 @@ let list = [
   { name: 'Lulu', age: 10, type: 'cat' },
   { name: 'Max', age: 3, type: 'dog' },
   { name: 'Milo', age: 2, type: 'cat' },
-  { name: 'Bella', age: 4, type: 'dog' },
-  { name: 'Nina', age: 7, type: 'rabbit' }
+  { name: 'Bella', age: 4, type: 'dog' }
 ];
 
 ```
