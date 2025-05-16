@@ -63,7 +63,10 @@ class Library {
 
     listAvailableBooks() {
         let availableBooks = this.books.filter(book => !book.isBorrowed)
-        console.log(availableBooks)
+        console.log('Available Books:')
+        availableBooks.forEach(book => {
+            console.log(`- ${book.title} by ${book.author}`)
+        })
     }
 }
 
