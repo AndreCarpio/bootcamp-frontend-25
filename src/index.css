@@ -5,6 +5,10 @@
 }
 
 #root {
-  background-color: rgb(126, 126, 126);
+  background-color: rgb(21, 37, 179);
+  flex-direction: column;
+  display: flex;
+  gap: 10px;
+  padding: 20px;
   height: 100vh;
 }
