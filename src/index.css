@@ -4,16 +4,25 @@
   box-sizing: border-box;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cinzel", serif;
+}
+
 body {
   display: flex;
   flex-direction: column;
+  padding: 30px;
 }
 
 #root {
-  background-color: rgb(21, 37, 179);
-  flex-direction: column;
+  background-color: red;
   display: flex;
-  gap: 10px;
-  padding: 20px;
-  flex: 1 0 100vh;
+  flex-direction: column;
+  flex: 1 1 100vh;
 }

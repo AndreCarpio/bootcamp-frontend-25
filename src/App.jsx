@@ -1,15 +1,5 @@
-import "./App.css";
+import { Card } from "./components/molecules/card";
 
 export const App = () => {
-  return (
-    <>
-      <div class="c1"></div>
-      <div class="c2"></div>
-      <div class="c3"></div>
-      <div class="c4">
-        <div class="c4_1"></div>
-        <div class="c4_2"></div>
-      </div>
-    </>
-  );
+  return <Card></Card>;
 };

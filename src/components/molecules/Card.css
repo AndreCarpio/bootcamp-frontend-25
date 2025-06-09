@@ -1,0 +1,87 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background-color: rgb(49, 49, 49);
+    flex: 1;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    background-color: rgb(39, 114, 175);
+}
+
+.cardName {
+    display: flex;
+    flex: 2;
+    border: 4px solid lightskyblue;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.cardName p {
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.cardName img {
+    height: 3.5rem;
+}
+
+
+.cardStars {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: end;
+    border: 4px solid lightskyblue;
+    flex: 1;
+}
+
+.cardStars img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.cardImage {
+    display: flex;
+    justify-content: center;
+    background-image: url("https://uploads2.yugioh.com/card_images/969/detail/087.jpg?1382473034");
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex: 8;
+    border: 4px solid red;
+}
+
+.cardInformation {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid lightskyblue;
+    padding: 10px;
+    gap: 10px;
+    flex: 4;
+}
+
+.cardDescription {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem;
+    text-align: justify;
+    border: 4px solid red;
+}
+
+.cardAttack {
+    flex: 1;
+    display: flex;
+    font-size: 1rem;
+    justify-content: end;
+    align-items: center;
+    border: 4px solid red;
+}
