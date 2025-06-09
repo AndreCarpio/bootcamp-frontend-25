@@ -46,6 +46,7 @@ export const Card = () => {
           </div>
         </div>
       </div>
+      <div className="texture"></div>
     </div>
   );
 };

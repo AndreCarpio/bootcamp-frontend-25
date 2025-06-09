@@ -1,9 +1,21 @@
 .card {
     display: flex;
+    position: relative;
     flex-direction: column;
     padding: 1.5rem;
     background-color: rgb(49, 49, 49);
     flex: 1;
+}
+
+.texture {
+    position: absolute;
+    background-image: url("../../assets/texture.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .content {
@@ -17,7 +29,7 @@
 .cardName {
     display: flex;
     flex: 2;
-    border: 4px solid lightskyblue;
+    border: 4px solid red;
     justify-content: space-between;
     align-items: center;
 
@@ -39,7 +51,7 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: end;
-    border: 4px solid lightskyblue;
+    border: 4px solid red;
     flex: 1;
 }
 
@@ -62,7 +74,7 @@
 .cardInformation {
     display: flex;
     flex-direction: column;
-    border: 4px solid lightskyblue;
+    border: 4px solid red;
     padding: 10px;
     gap: 10px;
     flex: 4;
@@ -75,6 +87,7 @@
     font-size: 0.7rem;
     text-align: justify;
     border: 4px solid red;
+    background-color: rgb(145, 188, 253);
 }
 
 .cardAttack {
@@ -84,4 +97,5 @@
     justify-content: end;
     align-items: center;
     border: 4px solid red;
+    background-color: rgb(145, 188, 253);
 }
