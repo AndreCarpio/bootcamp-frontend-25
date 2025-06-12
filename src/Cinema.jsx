@@ -2,8 +2,9 @@ import { useState } from "react";
 import "./Cinema.css";
 import { SeatIcon } from "./SeatIcon";
 
+// cinema using  only an useState()
 export const Cinema = ({ rows = 5, numSeats = 10 }) => {
-  const [seats, setSeats] = useState(createSeats());
+  const [seats, setSeats] = useState(createSeats);
 
   function createSeats() {
     const newSeats = [];
@@ -14,6 +15,7 @@ export const Cinema = ({ rows = 5, numSeats = 10 }) => {
       }
       newSeats.push(row);
     }
+    console.log(newSeats);
     return newSeats;
   }
 
@@ -24,6 +26,7 @@ export const Cinema = ({ rows = 5, numSeats = 10 }) => {
     setSeats((prev) => {
       let newSeats = structuredClone(prev);
       newSeats[indexRow][indexColum] = true;
+      console.log("reserveSeat !!!!!!!!!!!!!!!");
       return newSeats;
     });
   };
