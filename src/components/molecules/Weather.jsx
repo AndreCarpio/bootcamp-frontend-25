@@ -4,7 +4,12 @@ import "./Weather.css";
 export const Weather = () => {
   return (
     <>
-      <p>Weather app</p>
+      <h1>Weather app</h1>
+
+      <input type="text" name="" id="" />
+      <button>Search</button>
+      <button>Clean</button>
+      <div class="cardResult"></div>
     </>
   );
 };
