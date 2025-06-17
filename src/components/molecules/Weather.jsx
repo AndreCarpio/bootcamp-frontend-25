@@ -39,6 +39,7 @@ export const Weather = () => {
   function clear() {
     setFound(true);
     setSearchInput("");
+    setWeather(null);
   }
 
   return (
