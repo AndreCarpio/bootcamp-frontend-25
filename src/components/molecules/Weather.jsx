@@ -28,7 +28,7 @@ export const Weather = () => {
     console.log(searchInput);
     let city = mockWeatherData[searchInput];
     if (city) {
-      setWeather(city);
+      setWeather({ city: searchInput, ...city });
       setFound(true);
     } else {
       setWeather(null);
@@ -43,7 +43,7 @@ export const Weather = () => {
 
   return (
     <>
-      <h1>Weather app</h1>
+      <h1>Weather App</h1>
 
       <div className="barMenu">
         <input
@@ -60,7 +60,7 @@ export const Weather = () => {
         <div className="cardWeaher">
           <img src="./weather.svg" height="50px" width="50px" />
 
-          <p className="cityTitle">{searchInput}</p>
+          <p className="cityTitle">{weather.city}</p>
           <p>Temperature:{weather?.temperature}</p>
 
           <div style={{ display: "flex", gap: "1rem" }}>
