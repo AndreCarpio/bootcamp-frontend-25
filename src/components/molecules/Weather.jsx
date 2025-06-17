@@ -44,22 +44,28 @@ export const Weather = () => {
     <>
       <h1>Weather app</h1>
 
-      <input
-        type="text"
-        value={searchInput}
-        placeholder="Search for a city"
-        onChange={(e) => setSearchInput(e.target.value)}
-      />
-      <button onClick={search}>Search</button>
-      <button onClick={clear}>Clean</button>
-      <div className="cardResult"></div>
+      <div className="barMenu">
+        <input
+          type="text"
+          value={searchInput}
+          placeholder="Search for a city"
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button onClick={search}>Search</button>
+        <button onClick={clear}>Clean</button>
+      </div>
 
       {weather && (
         <div className="cardWeaher">
-          <p>{searchInput}</p>
+          <img src="./weather.svg" height="50px" width="50px" />
+
+          <p className="cityTitle">{searchInput}</p>
           <p>Temperature:{weather?.temperature}</p>
-          <p>Humidity:{weather?.humidity}</p>
-          <p>Wind Speed: {weather?.windSpeed}</p>
+
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <p>Humidity:{weather?.humidity}</p>
+            <p>Wind Speed: {weather?.windSpeed}</p>
+          </div>
         </div>
       )}
 
