@@ -1,11 +1,44 @@
 import React, { useState } from "react";
 import "./Weather.css";
 
+const mockWeatherData = {
+  "New York": {
+    temperature: "22°C",
+    humidity: "56%",
+    windSpeed: "15 km/h",
+  },
+  "Los Angeles": {
+    temperature: "27°C",
+    humidity: "45%",
+    windSpeed: "10 km/h",
+  },
+  London: {
+    temperature: "15°C",
+    humidity: "70%",
+    windSpeed: "20 km/h",
+  },
+};
+
 export const Weather = () => {
   const [searchInput, setSearchInput] = useState("");
   const [weather, setWeather] = useState(null);
+  const [found, setFound] = useState(true);
 
-  function search(name) {}
+  function search() {
+    console.log(searchInput);
+    let city = mockWeatherData[searchInput];
+    if (city) {
+      setWeather(city);
+      setFound(true);
+    } else {
+      setFound(false);
+    }
+  }
+
+  function clear() {
+    setFound(true);
+    setSearchInput("");
+  }
 
   return (
     <>
@@ -14,11 +47,23 @@ export const Weather = () => {
       <input
         type="text"
         value={searchInput}
-        onChange={(e) => setSearchInput(e.value)}
+        placeholder="Search for a city"
+        onChange={(e) => setSearchInput(e.target.value)}
       />
-      <button>Search</button>
-      <button>Clean</button>
-      <div class="cardResult"></div>
+      <button onClick={search}>Search</button>
+      <button onClick={clear}>Clean</button>
+      <div className="cardResult"></div>
+
+      {weather && (
+        <div className="cardWeaher">
+          <p>{searchInput}</p>
+          <p>Temperature:{weather?.temperature}</p>
+          <p>Humidity:{weather?.humidity}</p>
+          <p>Wind Speed: {weather?.windSpeed}</p>
+        </div>
+      )}
+
+      {!found && <p>City not found</p>}
     </>
   );
 };
