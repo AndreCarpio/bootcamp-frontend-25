@@ -31,6 +31,7 @@ export const Weather = () => {
       setWeather(city);
       setFound(true);
     } else {
+      setWeather(null);
       setFound(false);
     }
   }
