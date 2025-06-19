@@ -8,6 +8,7 @@ export const Task = ({
   completed = false,
   deleteTask = () => {},
   checkTask = () => {},
+  editTask = () => {},
 }) => {
   return (
     <div className="task">
@@ -18,8 +19,17 @@ export const Task = ({
           checkTask(e.target.checked, id);
         }}
       />
-      <p className="taskName">{name}</p>
-      <Button>Edit</Button>
+      <p className={`taskName ${completed && "taskCompleted"}`}>{name}</p>
+      <Button
+        onClick={() => {
+          let newName = prompt("Introduce a new task name", name);
+          if (newName) {
+            editTask(id, newName);
+          }
+        }}
+      >
+        Edit
+      </Button>
       <Button
         onClick={() => {
           deleteTask(id);

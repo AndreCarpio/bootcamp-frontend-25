@@ -1,8 +1,17 @@
 .task {
   display: flex;
   gap: 1rem;
+  align-items: center;
+  width: 100%;
 }
 
 .taskName {
-  width: 15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+  flex: 1;
+}
+
+.taskName.taskCompleted {
+  text-decoration: line-through;
 }

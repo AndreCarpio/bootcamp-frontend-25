@@ -25,6 +25,7 @@ export const ToDoApp = () => {
           completed: false,
         },
       ]);
+      input.current.value = "";
     } else {
       alert("Introduce a task name");
     }
@@ -48,6 +49,17 @@ export const ToDoApp = () => {
     });
   };
 
+  const editTask = (id, newName) => {
+    setTasks((prev) => {
+      return prev.map((task) => {
+        if (task.id == id) {
+          task.name = newName;
+        }
+        return task;
+      });
+    });
+  };
+
   return (
     <>
       <div className="toDoApp">
@@ -55,18 +67,21 @@ export const ToDoApp = () => {
         <InputText ref={input} placeholder={"Task name"}></InputText>
         <Button onClick={addTask}>Add</Button>
 
-        {tasks.map((task) => {
-          return (
-            <Task
-              key={task.id}
-              id={task.id}
-              name={task.name}
-              completed={task.completed}
-              deleteTask={deleteTask}
-              checkTask={checkTask}
-            ></Task>
-          );
-        })}
+        <div className="listTask">
+          {tasks.map((task) => {
+            return (
+              <Task
+                key={task.id}
+                id={task.id}
+                name={task.name}
+                completed={task.completed}
+                deleteTask={deleteTask}
+                checkTask={checkTask}
+                editTask={editTask}
+              ></Task>
+            );
+          })}
+        </div>
       </div>
     </>
   );
