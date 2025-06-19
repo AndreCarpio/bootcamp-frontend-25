@@ -1,0 +1,8 @@
+.task {
+  display: flex;
+  gap: 1rem;
+}
+
+.taskName {
+  width: 15rem;
+}
