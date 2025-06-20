@@ -1,13 +1,14 @@
-import { useRef, useState } from "react";
+import { useReducer, useRef, useState } from "react";
 import { InputText } from "../atoms/InputText";
 import { Title } from "../atoms/Title";
 import "./ToDoApp.css";
 import { Button } from "../atoms/Button";
 import { Task } from "../molecules/Task";
+import { taskReducer } from "../../reducers/taskReducer";
 
 export const ToDoApp = () => {
   const input = useRef(null);
-  const [tasks, setTasks] = useState([
+  const [tasks, dispatch] = useReducer(taskReducer, [
     {
       id: "s21321",
       name: "Estudiar javascript",
@@ -15,48 +16,31 @@ export const ToDoApp = () => {
     },
   ]);
 
-  const addTask = () => {
-    if (input.current.value != "") {
-      setTasks([
-        ...tasks,
-        {
-          id: crypto.randomUUID(),
-          name: input.current.value,
-          completed: false,
-        },
-      ]);
-      input.current.value = "";
-    } else {
-      alert("Introduce a task name");
-    }
+  const handleAdd = () => {
+    dispatch({
+      type: "add",
+      text: input.current.value,
+    });
   };
-
-  const checkTask = (completed, id) => {
-    console.log(completed);
-    setTasks((prev) => {
-      return prev.map((task) => {
-        if (task.id == id) {
-          task.completed = completed;
-        }
-        return task;
-      });
+  const handleCheckTask = (completed, id) => {
+    dispatch({
+      type: "checkTask",
+      completed,
+      id,
+    });
+  };
+  const handleDeleteTask = (id) => {
+    dispatch({
+      type: "deleteTask",
+      id,
     });
   };
 
-  const deleteTask = (id) => {
-    setTasks((prev) => {
-      return prev.filter((task) => task.id != id);
-    });
-  };
-
-  const editTask = (id, newName) => {
-    setTasks((prev) => {
-      return prev.map((task) => {
-        if (task.id == id) {
-          task.name = newName;
-        }
-        return task;
-      });
+  const handleEditTask = (id, newName) => {
+    dispatch({
+      type: "editTask",
+      id,
+      newName,
     });
   };
 
@@ -65,7 +49,7 @@ export const ToDoApp = () => {
       <div className="toDoApp">
         <Title>ToDo List App</Title>
         <InputText ref={input} placeholder={"Task name"}></InputText>
-        <Button onClick={addTask}>Add</Button>
+        <Button onClick={handleAdd}>Add</Button>
 
         <div className="listTask">
           {tasks.map((task) => {
@@ -75,9 +59,9 @@ export const ToDoApp = () => {
                 id={task.id}
                 name={task.name}
                 completed={task.completed}
-                deleteTask={deleteTask}
-                checkTask={checkTask}
-                editTask={editTask}
+                deleteTask={handleDeleteTask}
+                checkTask={handleCheckTask}
+                editTask={handleEditTask}
               ></Task>
             );
           })}
