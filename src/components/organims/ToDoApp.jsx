@@ -22,6 +22,7 @@ export const ToDoApp = () => {
       text: input.current.value,
     });
   };
+
   const handleCheckTask = (completed, id) => {
     dispatch({
       type: "checkTask",
@@ -29,6 +30,7 @@ export const ToDoApp = () => {
       id,
     });
   };
+  
   const handleDeleteTask = (id) => {
     dispatch({
       type: "deleteTask",

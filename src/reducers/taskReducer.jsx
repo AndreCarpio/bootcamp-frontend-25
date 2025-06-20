@@ -4,7 +4,7 @@ export const taskReducer = (tasks, action) => {
   if (action.type == "add") {
     if (!action.text) {
       alert("Introduce a task name");
-      return;
+      return tasks;
     }
     return [
       ...tasks,
