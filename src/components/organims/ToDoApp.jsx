@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from "react";
+import { useReducer, useRef } from "react";
 import { InputText } from "../atoms/InputText";
 import { Title } from "../atoms/Title";
 import "./ToDoApp.css";
@@ -30,7 +30,7 @@ export const ToDoApp = () => {
       id,
     });
   };
-  
+
   const handleDeleteTask = (id) => {
     dispatch({
       type: "deleteTask",
