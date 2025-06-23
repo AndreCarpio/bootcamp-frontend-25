@@ -14,35 +14,15 @@
 
 import { useContext, useState } from "react";
 import { MyLanguageContext } from "./Context";
-
-const languages = ["JavaScript", "Python"];
+import { LanguageToggle } from "./components/atoms/LanguageToggle";
 
 export default function App() {
   const [languageIndex, setLanguageIndex] = useState(0);
   return (
     <>
       <MyLanguageContext.Provider value={{ languageIndex, setLanguageIndex }}>
-        <MainSection />
+        <LanguageToggle></LanguageToggle>
       </MyLanguageContext.Provider>
     </>
-  );
-}
-
-function MainSection() {
-  const { languageIndex, setLanguageIndex } = useContext(MyLanguageContext);
-  return (
-    <div>
-      <p id="favoriteLanguage">
-        favorite programing language: {languages[languageIndex]}
-      </p>
-      <button
-        id="changeFavorite"
-        onClick={() => {
-          setLanguageIndex((prev) => (prev == 0 ? 1 : 0));
-        }}
-      >
-        toggle language
-      </button>
-    </div>
   );
 }
