@@ -1,28 +1,64 @@
-/**
- *
- * Your goal is to modify the application so that when you click the toggle button,
- * the favorite programming language toggles between the items in the languages array.
- * The default value should be the first item in the array.
- *
- * You must use the Context API for this challenge, which means you have to use the createContext
- * and Context.Provider functions. You are free to add classes and styles,
- * but make sure you leave the component ID's and clases provided as they are.
- *
- * Also is important move component and context to a separate files.
- * Submit your code once it is complete.
- */
-
-import { useContext, useState } from "react";
-import { MyLanguageContext } from "./Context";
-import { LanguageToggle } from "./components/atoms/LanguageToggle";
-
-export default function App() {
-  const [languageIndex, setLanguageIndex] = useState(0);
+import "./App.css";
+export const App = () => {
   return (
-    <>
-      <MyLanguageContext.Provider value={{ languageIndex, setLanguageIndex }}>
-        <LanguageToggle></LanguageToggle>
-      </MyLanguageContext.Provider>
-    </>
+    <div className="mainContainer">
+      <div className="twoColumns left">
+        <div className="column">
+          <div className="card card1"></div>
+        </div>
+        <div className="column">
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+        </div>
+      </div>
+
+      <div className="center">
+        <div className="centerContainer">
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+        </div>
+
+        <div className="centerContainer">
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+        </div>
+      </div>
+
+      <div className="twoColumns right">
+        <div className="column">
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+          <div className="card"></div>
+        </div>
+        <div className="column">
+          <div className="card card2"></div>
+        </div>
+      </div>
+    </div>
   );
-}
+};
