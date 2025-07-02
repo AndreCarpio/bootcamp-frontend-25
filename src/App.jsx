@@ -21,7 +21,12 @@ export function App() {
     idInterval.current = newIdInterval;
   }
 
-  function stop() {}
+  function stop() {
+    if (idInterval.current != null) {
+      clearInterval(idInterval.current);
+      idInterval.current = null;
+    }
+  }
 
   function formatTime(ms) {
     const totalSeconds = Math.floor(ms / 1000);
@@ -38,7 +43,7 @@ export function App() {
       <p>{formatTime(timer)}</p>
       <div style={{ display: "flex", gap: "1rem" }}>
         <Button onClick={start}>Start</Button>
-        <Button>Stop</Button>
+        <Button onClick={stop}>Stop</Button>
         <Button>Reset</Button>
       </div>
     </div>
