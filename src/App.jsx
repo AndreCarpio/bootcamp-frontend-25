@@ -7,7 +7,11 @@ export function App() {
   const [timer, setTimer] = useState(0);
   const idInterval = useRef(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, []);
 
   function start() {
     if (idInterval.current != null) {
@@ -28,6 +32,11 @@ export function App() {
     }
   }
 
+  function reset() {
+    setTimer(0);
+    stop();
+  }
+
   function formatTime(ms) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
@@ -44,7 +53,7 @@ export function App() {
       <div style={{ display: "flex", gap: "1rem" }}>
         <Button onClick={start}>Start</Button>
         <Button onClick={stop}>Stop</Button>
-        <Button>Reset</Button>
+        <Button onClick={reset}>Reset</Button>
       </div>
     </div>
   );
