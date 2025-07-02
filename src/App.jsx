@@ -5,6 +5,7 @@ import { Button } from "./components/atoms/Button";
 
 export function App() {
   const [timer, setTimer] = useState(0);
+  const ms = useRef(0);
   const idInterval = useRef(null);
 
   useEffect(() => {
@@ -18,9 +19,10 @@ export function App() {
       return;
     }
     let newIdInterval = setInterval(() => {
-      setTimer((prev) => {
-        return prev + 100;
-      });
+      ms.current = ms.current + 100;
+      if (ms.current > timer + 1000) {
+        setTimer(ms.current);
+      }
     }, 100);
     idInterval.current = newIdInterval;
   }
@@ -34,6 +36,7 @@ export function App() {
 
   function reset() {
     setTimer(0);
+    ms.current = 0;
     stop();
   }
 
