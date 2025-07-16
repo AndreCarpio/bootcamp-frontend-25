@@ -54,3 +54,19 @@ checkPositive(10)
   .catch((error) => {
     console.log("Error:", error);
   });
+
+
+
+  console.log("Start");
+
+setTimeout(() => console.log("Timeout completed"), 1000);
+
+(async function () {
+  console.log("Before await");
+  
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  
+  console.log("After await");
+})();
+
+console.log("End");

@@ -121,6 +121,7 @@ async function fetchData() {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
+}
 ```
 
 ### Avoids "callback hell"
@@ -150,16 +151,6 @@ async function loadAll() {
 
 ## Disadvantages
 
-### Blocks the event loop for sequential operations
-
-When we use await in a loop or with independent operations, it forces each one to wait unnecessarily.
-
-```js
-await fetchUser();
-await fetchPosts();
-await fetchComments();
-```
-
 ### Higher risk of silent errors when forgetting await
 
 If we forget await, we get a Promise instead of the expected value, which can lead to bugs.
@@ -170,3 +161,46 @@ async function getData() {
   console.log(result); // Logs: Promise { <pending> }
 }
 ```
+
+# How `await` Works in the Event Loop
+
+Behavior of `await` Inside an `async` Function
+
+When `await` is used inside an `async` function:
+
+- The function execution is **paused** at the `await` statement.
+- Unlike traditional synchronous blocking, this pause **only affects the function** where `await` is used — **not** the entire JavaScript execution.
+- The promise continues executing in the **background**.
+- If the awaited operation takes time (e.g., an API call), it runs independently, while the event loop continues processing other tasks.
+- When the promise resolves, the **event loop schedules** the remaining part of the function.
+- The function **resumes execution** only after the call stack is clear and all higher-priority tasks are completed.
+
+### Example: `await` vs. Blocking Code
+
+```js
+console.log("Start");
+
+setTimeout(() => console.log("Timeout completed"), 1000);
+
+(async function () {
+  console.log("Before await");
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  console.log("After await");
+})();
+
+console.log("End");
+```
+
+### Execution Breakdown:
+
+- "Start" is logged immediately.
+
+- "Before await" is logged.
+- The await pauses execution of the async function, but the event loop remains active.
+- "End" is logged next because the main thread is free to continue execution.
+- "Timeout completed" is logged after 1 second.
+- After 2 seconds, the promise resolves, and "After await" is logged.
+
+This proves that await only pauses the async function and does not block the event loop
