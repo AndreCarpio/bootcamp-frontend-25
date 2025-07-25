@@ -12,6 +12,7 @@ class AccessCard extends HTMLElement {
     this.shadowRoot.innerHTML = `
         <style>
             .accessCard {
+              font-family: "Albert Sans", sans-serif;
               display: flex;
               flex-direction: column;
               align-items: center;
