@@ -1,5 +1,7 @@
-import styles from './Checkout.module.css';
-import { LoadingIcon } from './Icons';
+import { useEffect, useState } from "react";
+import styles from "./Checkout.module.css";
+import { LoadingIcon } from "./Icons";
+import { getProducts, Product as ProductType } from "./dataService";
 // import { getProducts } from './dataService';
 
 // You are provided with an incomplete <Checkout /> component.
@@ -20,34 +22,106 @@ import { LoadingIcon } from './Icons';
 //  - The total should reflect any discount that has been applied
 //  - All dollar amounts should be displayed to 2 decimal places
 
-
-
-const Product = ({ id, name, availableCount, price, orderedQuantity, total }) => {
+const Product = ({
+  id,
+  name,
+  availableCount,
+  price,
+  orderedQuantity,
+  total,
+  handleAddQuantityProduct,
+  handleRemoveQuantityProduct,
+}) => {
   return (
     <tr>
       <td>{id}</td>
       <td>{name}</td>
       <td>{availableCount}</td>
       <td>${price}</td>
-      <td>{orderedQuantity}</td>   
+      <td>{orderedQuantity}</td>
       <td>${total}</td>
       <td>
-        <button className={styles.actionButton}>+</button>
-        <button className={styles.actionButton}>-</button>
+        <button
+          onClick={handleAddQuantityProduct}
+          className={styles.actionButton}
+          disabled={orderedQuantity >= availableCount}
+        >
+          +
+        </button>
+        <button
+          onClick={handleRemoveQuantityProduct}
+          className={styles.actionButton}
+          disabled={orderedQuantity <= 0}
+        >
+          -
+        </button>
       </td>
-    </tr>    
+    </tr>
   );
-}
-
+};
 
 const Checkout = () => {
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const res = await getProducts();
+        const resAux = res.map((p) => {
+          return { ...p, orderedQuantity: 0 };
+        });
+        setProducts(resAux);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
+  }, []);
+
+  const handleAddQuantityProduct = (id: number) => {
+    console.log("--------");
+    setProducts((prev) => {
+      const newProd = prev.map((p) => {
+        const aux = p;
+        if (aux.id == id) {
+          if (aux.orderedQuantity >= p.availableCount) {
+            return aux;
+          }
+          aux.orderedQuantity++;
+        }
+        return aux;
+      });
+      return newProd;
+    });
+  };
+
+  const handleRemoveQuantityProduct = (id) => {
+    console.log("--------");
+    setProducts((prev) => {
+      const newProd = prev.map((p) => {
+        const aux = p;
+        if (aux.id == id) {
+          if (aux.orderedQuantity == 0) {
+            return aux;
+          }
+          aux.orderedQuantity--;
+        }
+        return aux;
+      });
+      return newProd;
+    });
+  };
   return (
     <div>
-      <header className={styles.header}>        
-        <h1>Electro World</h1>        
+      <header className={styles.header}>
+        <h1>Electro World</h1>
       </header>
       <main>
-        <LoadingIcon />        
+        {loading && <LoadingIcon />}
         <table className={styles.table}>
           <thead>
             <tr>
@@ -62,12 +136,48 @@ const Checkout = () => {
             </tr>
           </thead>
           <tbody>
-          {/* Products should be rendered here */}
+            {products.map((p) => {
+              return (
+                <Product
+                  key={p.id}
+                  id={p.id}
+                  name={p.name}
+                  availableCount={p.availableCount}
+                  price={p.price}
+                  total={p.orderedQuantity * p.price}
+                  orderedQuantity={p.orderedQuantity}
+                  handleAddQuantityProduct={() => {
+                    handleAddQuantityProduct(p.id);
+                  }}
+                  handleRemoveQuantityProduct={() => {
+                    handleRemoveQuantityProduct(p.id);
+                  }}
+                ></Product>
+              );
+            })}
           </tbody>
         </table>
         <h2>Order summary</h2>
-        <p>Discount: $ </p>
-        <p>Total: $ </p>       
+        <p>Discount: $ 
+          {products.reduce((accumulator, currentValue) => {
+            const  sum = accumulator + (currentValue.price * currentValue.orderedQuantity);
+            let discount = 0 ;
+            if(sum > 1000 ){
+              discount = sum * 0.1
+            }
+            return (
+              accumulator + discount
+            );
+          }, 0)}
+           </p>
+        <p>
+          Total: $
+          {products.reduce((accumulator, currentValue) => {
+            return (
+              accumulator + currentValue.price * currentValue.orderedQuantity
+            );
+          }, 0)}
+        </p>
       </main>
     </div>
   );
